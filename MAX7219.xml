@@ -9,7 +9,7 @@
     <variable id=":wvyisRY~E+XIbOuR+;g">mqtt1</variable>
     <variable id="na{F_d1JzCifX+,.7zE]">mqtt2</variable>
   </variables>
-  <block type="board_initializes_setup" id="0" x="-210" y="-1590">
+  <block type="board_initializes_setup" id="0" x="-290" y="-1610">
     <field name="BOARD_TYPE">ESP32</field>
     <statement name="CONTENT">
       <block type="serial_init" id="FcpA:#i2b$ph!lZ[Ft56">
@@ -91,93 +91,148 @@
                                     <field name="VAR" id=":wvyisRY~E+XIbOuR+;g">mqtt1</field>
                                     <value name="LEN">
                                       <block type="math_number" id=":h8cba+Ww3K^;!rg?|bK">
-                                        <field name="NUM">16</field>
+                                        <field name="NUM">3</field>
                                       </block>
                                     </value>
                                     <value name="VALUE">
                                       <shadow type="text" id="39h[V}N-dnDTD1/C|6(m">
                                         <field name="TEXT"></field>
                                       </shadow>
-                                      <block type="lists_create_with" id="`S)x2qJQ{jC1~H_t)h3Q" inline="false">
-                                        <mutation items="16"></mutation>
+                                      <block type="lists_create_with" id="jTczy`+Xt;hc?eD$mvKs" inline="false">
+                                        <mutation items="3"></mutation>
                                         <value name="ADD0">
-                                          <block type="math_number" id="IUd_h9x;p8A=by{x[S;z">
-                                            <field name="NUM">0</field>
+                                          <block type="lists_create_with" id="|/YZr{R7~7.c4P3^OTSj" inline="false" collapsed="true">
+                                            <mutation items="8"></mutation>
+                                            <value name="ADD0">
+                                              <block type="math_number" id="NUue8~gq/%c]..G]ef{c">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD1">
+                                              <block type="math_number" id="v,cX%p$F5^R=NUS*Xur7">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD2">
+                                              <block type="math_number" id="zC0_r(ac0bL5gekef?]Q">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD3">
+                                              <block type="math_number" id="pyEvYIf$T+vZA:6#qhQ,">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD4">
+                                              <block type="math_number" id="9DVY[sP!?i,yjs*Q?N7.">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD5">
+                                              <block type="math_number" id="|K{fnu[$`$LQTeNs.G21">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD6">
+                                              <block type="math_number" id="m[2rc9^NE,0L=.KOTgm?">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD7">
+                                              <block type="math_number" id="`~=Dy=8|J!^a,Ir[ICAe">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
                                           </block>
                                         </value>
                                         <value name="ADD1">
-                                          <block type="math_number" id="I6yhPI@{E=eQ*4D_oPj9">
-                                            <field name="NUM">0</field>
+                                          <block type="lists_create_with" id="Hws#%DS2^S#VY~4@VFnD" inline="false" collapsed="true">
+                                            <mutation items="8"></mutation>
+                                            <value name="ADD0">
+                                              <block type="math_number" id="K[By8Z2_mg,T99NIvWt{">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD1">
+                                              <block type="math_number" id="Qof/{5$jUGjmL^GV,!(Z">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD2">
+                                              <block type="math_number" id="I)nhU%mf;-Un:pLe=6LW">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD3">
+                                              <block type="math_number" id="18X!%`8zF9c)6g}MMjO}">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD4">
+                                              <block type="math_number" id="YFuba()k;K,tBy=?=Q89">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD5">
+                                              <block type="math_number" id="hV72@.k=Ptm{pFvtVgtt">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD6">
+                                              <block type="math_number" id="rA@|4b]^|XUJ1jUyF;J^">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD7">
+                                              <block type="math_number" id="lumD[D4t(:vuMO/2#B_J">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
                                           </block>
                                         </value>
                                         <value name="ADD2">
-                                          <block type="math_number" id="j*1-u+?@w].:0nKVPf8.">
-                                            <field name="NUM">0</field>
-                                          </block>
-                                        </value>
-                                        <value name="ADD3">
-                                          <block type="math_number" id="VWhL{i,GU}]s1tMa.T/L">
-                                            <field name="NUM">0</field>
-                                          </block>
-                                        </value>
-                                        <value name="ADD4">
-                                          <block type="math_number" id="DAmn:KZC;iuh5PgkJ;7*">
-                                            <field name="NUM">0</field>
-                                          </block>
-                                        </value>
-                                        <value name="ADD5">
-                                          <block type="math_number" id="W^4NL,yY=evnLijHT;%m">
-                                            <field name="NUM">0</field>
-                                          </block>
-                                        </value>
-                                        <value name="ADD6">
-                                          <block type="math_number" id="Jq5LdC@vkIT6#Pu9h0IO">
-                                            <field name="NUM">0</field>
-                                          </block>
-                                        </value>
-                                        <value name="ADD7">
-                                          <block type="math_number" id="9MT|EKBs#BxBo-`{?mD3">
-                                            <field name="NUM">0</field>
-                                          </block>
-                                        </value>
-                                        <value name="ADD8">
-                                          <block type="math_number" id="0.EFwkov+oD)5#AE0nQW">
-                                            <field name="NUM">0</field>
-                                          </block>
-                                        </value>
-                                        <value name="ADD9">
-                                          <block type="math_number" id="_N[*XP%e?v0hFkF`)efw">
-                                            <field name="NUM">0</field>
-                                          </block>
-                                        </value>
-                                        <value name="ADD10">
-                                          <block type="math_number" id="DpLgN!^6U908R/X.)Z;Q">
-                                            <field name="NUM">0</field>
-                                          </block>
-                                        </value>
-                                        <value name="ADD11">
-                                          <block type="math_number" id="6ai553Yqr5m4a#P)*$)s">
-                                            <field name="NUM">0</field>
-                                          </block>
-                                        </value>
-                                        <value name="ADD12">
-                                          <block type="math_number" id="UgR,hwjP,mgEc4X7q|Hb">
-                                            <field name="NUM">0</field>
-                                          </block>
-                                        </value>
-                                        <value name="ADD13">
-                                          <block type="math_number" id="3-g9Gf?=MYQl%^ia7=B{">
-                                            <field name="NUM">0</field>
-                                          </block>
-                                        </value>
-                                        <value name="ADD14">
-                                          <block type="math_number" id="wVtk;W9G+8QC)Mdn}:MO">
-                                            <field name="NUM">0</field>
-                                          </block>
-                                        </value>
-                                        <value name="ADD15">
-                                          <block type="math_number" id="I[q:9h`M14;TyEk(gt*(">
-                                            <field name="NUM">0</field>
+                                          <block type="lists_create_with" id="f,a#F#I1k+f,DnOp[z5U" inline="false" collapsed="true">
+                                            <mutation items="8"></mutation>
+                                            <value name="ADD0">
+                                              <block type="math_number" id="X#h#WwEZEgrk^dt*^P]4">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD1">
+                                              <block type="math_number" id="Up=G.Mh]^!tnLv0t|mF-">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD2">
+                                              <block type="math_number" id="ZtNRaUtioTjOyrI|Dh+3">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD3">
+                                              <block type="math_number" id="+a{ZZUqsiiJ[cI{$f=Fc">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD4">
+                                              <block type="math_number" id="JAGPg[Ps|-nv_AxtFJs~">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD5">
+                                              <block type="math_number" id=".7IL?B7lAaH,zV10BWaq">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD6">
+                                              <block type="math_number" id="7y,8TUZN}q-No4)g0NS1">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <value name="ADD7">
+                                              <block type="math_number" id="aS@f@HDL9pFkQ0DhT;IL">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
                                           </block>
                                         </value>
                                       </block>
@@ -193,92 +248,9 @@
                                           </block>
                                         </value>
                                         <value name="VALUE">
-                                          <shadow type="text">
+                                          <shadow type="text" id="o]6q3w=yIx=4Q=]}#%XO">
                                             <field name="TEXT"></field>
                                           </shadow>
-                                          <block type="lists_create_with" id="i}iHXi$d``!#P^a.?uV}" inline="false">
-                                            <mutation items="16"></mutation>
-                                            <value name="ADD0">
-                                              <block type="math_number" id="Ro#gJiq8Xi18!Xd/(q{q">
-                                                <field name="NUM">0</field>
-                                              </block>
-                                            </value>
-                                            <value name="ADD1">
-                                              <block type="math_number" id="*C~5h}`|}^uV/cFg:2c`">
-                                                <field name="NUM">0</field>
-                                              </block>
-                                            </value>
-                                            <value name="ADD2">
-                                              <block type="math_number" id="XGE5@|n.0s6Dc%T/11kd">
-                                                <field name="NUM">0</field>
-                                              </block>
-                                            </value>
-                                            <value name="ADD3">
-                                              <block type="math_number" id="Oj;!5JpCis`tPAnRfRX`">
-                                                <field name="NUM">0</field>
-                                              </block>
-                                            </value>
-                                            <value name="ADD4">
-                                              <block type="math_number" id="O5PIrwruH)u.};XA$^s;">
-                                                <field name="NUM">0</field>
-                                              </block>
-                                            </value>
-                                            <value name="ADD5">
-                                              <block type="math_number" id="DLf!rZBi|E@zuw*)}0Fm">
-                                                <field name="NUM">0</field>
-                                              </block>
-                                            </value>
-                                            <value name="ADD6">
-                                              <block type="math_number" id="DKd2+3ct]H8:)ZnW[fD8">
-                                                <field name="NUM">0</field>
-                                              </block>
-                                            </value>
-                                            <value name="ADD7">
-                                              <block type="math_number" id="Vv9td=xvoeAW:@SL-z~)">
-                                                <field name="NUM">0</field>
-                                              </block>
-                                            </value>
-                                            <value name="ADD8">
-                                              <block type="math_number" id="uSyMBktZ`DNMTnn]!`~T">
-                                                <field name="NUM">0</field>
-                                              </block>
-                                            </value>
-                                            <value name="ADD9">
-                                              <block type="math_number" id="G6YzBG^d.Si[68U9MK#0">
-                                                <field name="NUM">0</field>
-                                              </block>
-                                            </value>
-                                            <value name="ADD10">
-                                              <block type="math_number" id="}.c=iuTSaszDZ0PeX/~k">
-                                                <field name="NUM">0</field>
-                                              </block>
-                                            </value>
-                                            <value name="ADD11">
-                                              <block type="math_number" id="1K$X5ywqjLPPRcanZ3b;">
-                                                <field name="NUM">0</field>
-                                              </block>
-                                            </value>
-                                            <value name="ADD12">
-                                              <block type="math_number" id="~IY:X_kw^c]o%8GE4Zi7">
-                                                <field name="NUM">0</field>
-                                              </block>
-                                            </value>
-                                            <value name="ADD13">
-                                              <block type="math_number" id="PNRgvIkUB|O:O+ZqkA[)">
-                                                <field name="NUM">0</field>
-                                              </block>
-                                            </value>
-                                            <value name="ADD14">
-                                              <block type="math_number" id="o_!H+qhe2oS-S^9#6UjE">
-                                                <field name="NUM">0</field>
-                                              </block>
-                                            </value>
-                                            <value name="ADD15">
-                                              <block type="math_number" id="=Xzo#C@YMAeF[Kx[G89U">
-                                                <field name="NUM">0</field>
-                                              </block>
-                                            </value>
-                                          </block>
                                         </value>
                                         <next>
                                           <block type="ljj_max7219_init" id="7LkmR:xqI.oPRDEcEp;/">
@@ -807,6 +779,7 @@
                             
                                     
                                             
+                                    
                                     </comment>
                                     <value name="IF0">
                                       <block type="inout_custom_digital_read" id="~`/EpBCwxhfSPevsH{+B">
@@ -1222,7 +1195,7 @@
                                                             <field name="L70">FALSE</field>
                                                             <next>
                                                               <block type="ljj_max7219_bitmap" id="ayb[Eoei709U2kva3^YT">
-                                                                <field name="DEV_INDEX">6</field>
+                                                                <field name="DEV_INDEX">0</field>
                                                                 <field name="L07">FALSE</field>
                                                                 <field name="L17">FALSE</field>
                                                                 <field name="L27">FALSE</field>
@@ -1289,7 +1262,7 @@
                                                                 <field name="L70">FALSE</field>
                                                                 <next>
                                                                   <block type="ljj_max7219_bitmap" id="El[rc|)gTh?2j1-=y-wq">
-                                                                    <field name="DEV_INDEX">7</field>
+                                                                    <field name="DEV_INDEX">0</field>
                                                                     <field name="L07">FALSE</field>
                                                                     <field name="L17">FALSE</field>
                                                                     <field name="L27">FALSE</field>
@@ -1356,7 +1329,7 @@
                                                                     <field name="L70">TRUE</field>
                                                                     <next>
                                                                       <block type="ljj_max7219_bitmap" id="*(ok-2-sw(2%L3#w[k|K">
-                                                                        <field name="DEV_INDEX">8</field>
+                                                                        <field name="DEV_INDEX">0</field>
                                                                         <field name="L07">TRUE</field>
                                                                         <field name="L17">FALSE</field>
                                                                         <field name="L27">FALSE</field>
@@ -1423,7 +1396,7 @@
                                                                         <field name="L70">FALSE</field>
                                                                         <next>
                                                                           <block type="ljj_max7219_bitmap" id="/Nq$+XJ%N==Nz%=cTIX0">
-                                                                            <field name="DEV_INDEX">9</field>
+                                                                            <field name="DEV_INDEX">0</field>
                                                                             <field name="L07">FALSE</field>
                                                                             <field name="L17">TRUE</field>
                                                                             <field name="L27">FALSE</field>
@@ -1490,7 +1463,7 @@
                                                                             <field name="L70">FALSE</field>
                                                                             <next>
                                                                               <block type="ljj_max7219_bitmap" id="fHufH|(Cuj53}|E^kkv@">
-                                                                                <field name="DEV_INDEX">10</field>
+                                                                                <field name="DEV_INDEX">0</field>
                                                                                 <field name="L07">FALSE</field>
                                                                                 <field name="L17">FALSE</field>
                                                                                 <field name="L27">TRUE</field>
@@ -1557,7 +1530,7 @@
                                                                                 <field name="L70">FALSE</field>
                                                                                 <next>
                                                                                   <block type="ljj_max7219_bitmap" id="(ynb1+!I8akiA55bDr-e">
-                                                                                    <field name="DEV_INDEX">11</field>
+                                                                                    <field name="DEV_INDEX">0</field>
                                                                                     <field name="L07">FALSE</field>
                                                                                     <field name="L17">FALSE</field>
                                                                                     <field name="L27">FALSE</field>
@@ -1624,7 +1597,7 @@
                                                                                     <field name="L70">FALSE</field>
                                                                                     <next>
                                                                                       <block type="ljj_max7219_bitmap" id="M)Q@QX*K=v!O};`XDj}`">
-                                                                                        <field name="DEV_INDEX">12</field>
+                                                                                        <field name="DEV_INDEX">0</field>
                                                                                         <field name="L07">FALSE</field>
                                                                                         <field name="L17">FALSE</field>
                                                                                         <field name="L27">FALSE</field>
@@ -1691,7 +1664,7 @@
                                                                                         <field name="L70">FALSE</field>
                                                                                         <next>
                                                                                           <block type="ljj_max7219_bitmap" id="Q%}5eR:dn6uN#wx?$kx+">
-                                                                                            <field name="DEV_INDEX">13</field>
+                                                                                            <field name="DEV_INDEX">0</field>
                                                                                             <field name="L07">FALSE</field>
                                                                                             <field name="L17">FALSE</field>
                                                                                             <field name="L27">FALSE</field>
@@ -1758,7 +1731,7 @@
                                                                                             <field name="L70">FALSE</field>
                                                                                             <next>
                                                                                               <block type="ljj_max7219_bitmap" id="1lh_wqCLk)2B=:%M;%GR">
-                                                                                                <field name="DEV_INDEX">14</field>
+                                                                                                <field name="DEV_INDEX">0</field>
                                                                                                 <field name="L07">FALSE</field>
                                                                                                 <field name="L17">FALSE</field>
                                                                                                 <field name="L27">FALSE</field>
@@ -1825,7 +1798,7 @@
                                                                                                 <field name="L70">FALSE</field>
                                                                                                 <next>
                                                                                                   <block type="ljj_max7219_bitmap" id="itFbrC~+jpoDD[_*k^ga">
-                                                                                                    <field name="DEV_INDEX">15</field>
+                                                                                                    <field name="DEV_INDEX">0</field>
                                                                                                     <field name="L07">FALSE</field>
                                                                                                     <field name="L17">FALSE</field>
                                                                                                     <field name="L27">FALSE</field>
@@ -2326,7 +2299,7 @@
                                                             <field name="L70">FALSE</field>
                                                             <next>
                                                               <block type="ljj_max7219_bitmap" id="oEFD2b3|gQ-/tf$!9d%t">
-                                                                <field name="DEV_INDEX">6</field>
+                                                                <field name="DEV_INDEX">0</field>
                                                                 <field name="L07">FALSE</field>
                                                                 <field name="L17">FALSE</field>
                                                                 <field name="L27">FALSE</field>
@@ -2393,7 +2366,7 @@
                                                                 <field name="L70">FALSE</field>
                                                                 <next>
                                                                   <block type="ljj_max7219_bitmap" id="F)$fWBbmSQ?F]zl?Q5=e">
-                                                                    <field name="DEV_INDEX">7</field>
+                                                                    <field name="DEV_INDEX">0</field>
                                                                     <field name="L07">FALSE</field>
                                                                     <field name="L17">FALSE</field>
                                                                     <field name="L27">FALSE</field>
@@ -2460,7 +2433,7 @@
                                                                     <field name="L70">TRUE</field>
                                                                     <next>
                                                                       <block type="ljj_max7219_bitmap" id="e/2|km)}F2k2~}M#QaXu">
-                                                                        <field name="DEV_INDEX">8</field>
+                                                                        <field name="DEV_INDEX">0</field>
                                                                         <field name="L07">TRUE</field>
                                                                         <field name="L17">FALSE</field>
                                                                         <field name="L27">FALSE</field>
@@ -2527,7 +2500,7 @@
                                                                         <field name="L70">FALSE</field>
                                                                         <next>
                                                                           <block type="ljj_max7219_bitmap" id=";-O3T1.MbF%QlNr`FpgU">
-                                                                            <field name="DEV_INDEX">9</field>
+                                                                            <field name="DEV_INDEX">0</field>
                                                                             <field name="L07">FALSE</field>
                                                                             <field name="L17">TRUE</field>
                                                                             <field name="L27">FALSE</field>
@@ -2594,7 +2567,7 @@
                                                                             <field name="L70">FALSE</field>
                                                                             <next>
                                                                               <block type="ljj_max7219_bitmap" id="^0VYk:Nd1/UmF1PV/]%?">
-                                                                                <field name="DEV_INDEX">10</field>
+                                                                                <field name="DEV_INDEX">0</field>
                                                                                 <field name="L07">FALSE</field>
                                                                                 <field name="L17">FALSE</field>
                                                                                 <field name="L27">TRUE</field>
@@ -2661,7 +2634,7 @@
                                                                                 <field name="L70">FALSE</field>
                                                                                 <next>
                                                                                   <block type="ljj_max7219_bitmap" id="Dw--%R|W^sG5Z@ehX$QK">
-                                                                                    <field name="DEV_INDEX">11</field>
+                                                                                    <field name="DEV_INDEX">0</field>
                                                                                     <field name="L07">FALSE</field>
                                                                                     <field name="L17">FALSE</field>
                                                                                     <field name="L27">FALSE</field>
@@ -2728,7 +2701,7 @@
                                                                                     <field name="L70">FALSE</field>
                                                                                     <next>
                                                                                       <block type="ljj_max7219_bitmap" id=":~2ED2v`qV/I@KG?QBqF">
-                                                                                        <field name="DEV_INDEX">12</field>
+                                                                                        <field name="DEV_INDEX">0</field>
                                                                                         <field name="L07">FALSE</field>
                                                                                         <field name="L17">FALSE</field>
                                                                                         <field name="L27">FALSE</field>
@@ -2795,7 +2768,7 @@
                                                                                         <field name="L70">FALSE</field>
                                                                                         <next>
                                                                                           <block type="ljj_max7219_bitmap" id="JHO*Pz+$J__gBvw^_?fD">
-                                                                                            <field name="DEV_INDEX">13</field>
+                                                                                            <field name="DEV_INDEX">0</field>
                                                                                             <field name="L07">FALSE</field>
                                                                                             <field name="L17">FALSE</field>
                                                                                             <field name="L27">FALSE</field>
@@ -2862,7 +2835,7 @@
                                                                                             <field name="L70">FALSE</field>
                                                                                             <next>
                                                                                               <block type="ljj_max7219_bitmap" id="0DW!/_en:bYR@|V,S6Ks">
-                                                                                                <field name="DEV_INDEX">14</field>
+                                                                                                <field name="DEV_INDEX">0</field>
                                                                                                 <field name="L07">FALSE</field>
                                                                                                 <field name="L17">FALSE</field>
                                                                                                 <field name="L27">FALSE</field>
@@ -2929,7 +2902,7 @@
                                                                                                 <field name="L70">FALSE</field>
                                                                                                 <next>
                                                                                                   <block type="ljj_max7219_bitmap" id="hs!jX)S4E{x$*8Q6fV]+">
-                                                                                                    <field name="DEV_INDEX">15</field>
+                                                                                                    <field name="DEV_INDEX">0</field>
                                                                                                     <field name="L07">FALSE</field>
                                                                                                     <field name="L17">FALSE</field>
                                                                                                     <field name="L27">FALSE</field>
@@ -3043,7 +3016,7 @@
       </block>
     </next>
   </block>
-  <block type="mqtt_event" id="E,K8Wwpa4nrLtb%#?7C0" x="470" y="-1250">
+  <block type="mqtt_event" id="E,K8Wwpa4nrLtb%#?7C0" x="790" y="-1410">
     <statement name="MSG_TOPIC_EQAL">
       <block type="serial_println" id="(;j+K*MK_N%p(0EPyY]W">
         <value name="CONTENT">
@@ -3059,46 +3032,10 @@
       </block>
     </statement>
   </block>
-  <block type="text" id="wVT@xU;w;[;t7diWJ7Nb" x="450" y="-770">
+  <block type="text" id="wVT@xU;w;[;t7diWJ7Nb" x="150" y="-250">
     <field name="TEXT">CMoney</field>
   </block>
-  <block type="text" id="h6bf(VEbT~:`)eO}mhu6" x="448" y="-671">
+  <block type="text" id="h6bf(VEbT~:`)eO}mhu6" x="150" y="-210">
     <field name="TEXT">xyz88888888</field>
-  </block>
-  <block type="serial_println" id="nmap[ZX`B=ubC0XU0@m/" x="270" y="10">
-    <value name="CONTENT">
-      <block type="linkit_wifi_ip_address" id="L!;D.rKt79i@?b(]S|=?"></block>
-    </value>
-    <next>
-      <block type="serial_println" id="]g-{efmerdKoer)cbv9i">
-        <value name="CONTENT">
-          <block type="mqtt_connected" id="LJuwhPldPc}j-q@`cR.W"></block>
-        </value>
-        <next>
-          <block type="publish_mqtt" id="F!d~6(l2Qdl[8RnnUB+P">
-            <field name="RETAIN">FALSE</field>
-            <value name="TOPIC">
-              <block type="text" id="#0qd21jO-NkKSo:fDcDZ">
-                <field name="TEXT">max7219-mqtt3</field>
-              </block>
-            </value>
-            <value name="MESSAGE">
-              <block type="text" id="#S*+}b7gX6/1Kz#W*/%9">
-                <field name="TEXT">發送訊息</field>
-              </block>
-            </value>
-            <next>
-              <block type="delay_custom" id="qB.]v+ESqv-r{2C~$0DI">
-                <value name="DELAY_TIME">
-                  <block type="math_number" id=":3$iYPh.,6gU~#Ho5L6/">
-                    <field name="NUM">1000</field>
-                  </block>
-                </value>
-              </block>
-            </next>
-          </block>
-        </next>
-      </block>
-    </next>
   </block>
 </xml>

@@ -56,8 +56,22 @@ void mqttCallback(char* topic, byte* payload, unsigned int length){
     receivedMsg += (char)payload[myIndex];
   }
   receivedMsg.trim();
-  Serial.println(receivedTopic);
-  Serial.println(receivedMsg);
+
+  if(receivedTopic == "max7219-mqtt1"){
+    for (int i = 0; i < 16; i++) {
+      String byteStr = receivedMsg.substring(i * 8, (i * 8) + 8);
+      mqtt1[i] = strtol(byteStr.c_str(), NULL, 2);
+    } 
+  }
+  if(receivedTopic == "max7219-mqtt2"){
+    for (int i = 0; i < 16; i++) {
+      String byteStr = receivedMsg.substring(i * 8, (i * 8) + 8);
+      mqtt2[i] = strtol(byteStr.c_str(), NULL, 2);
+    } 
+  }
+  
+//  Serial.println(receivedTopic);
+//  Serial.println(receivedMsg);
 
 }
 
