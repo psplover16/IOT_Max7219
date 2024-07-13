@@ -1,4 +1,4 @@
-//Generated Date: Sat, 13 Jul 2024 08:46:54 GMT
+//Generated Date: Sat, 13 Jul 2024 09:26:40 GMT
 
 #include <MD_Parola.h>
 #include <MD_MAX72xx.h>
@@ -19,8 +19,8 @@ long lastClickTime = 0;
 long btnDelay = 50;
 float balanceTempture = 25;
 float balanceHumi = 50;
-byte mqtt1[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-byte mqtt2[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+byte mqtt1[3] = {{0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}};
+byte mqtt2[16] = "";
 char *max7219Char;
 String max7219Str="";
 MD_Parola myDisplay = MD_Parola(HARDWARE_TYPE,4,17,16,DEVICE_NUMBER);
@@ -56,22 +56,8 @@ void mqttCallback(char* topic, byte* payload, unsigned int length){
     receivedMsg += (char)payload[myIndex];
   }
   receivedMsg.trim();
-
-  if(receivedTopic == "max7219-mqtt1"){
-    for (int i = 0; i < 16; i++) {
-      String byteStr = receivedMsg.substring(i * 8, (i * 8) + 8);
-      mqtt1[i] = strtol(byteStr.c_str(), NULL, 2);
-    } 
-  }
-  if(receivedTopic == "max7219-mqtt2"){
-    for (int i = 0; i < 16; i++) {
-      String byteStr = receivedMsg.substring(i * 8, (i * 8) + 8);
-      mqtt2[i] = strtol(byteStr.c_str(), NULL, 2);
-    } 
-  }
-  
-//  Serial.println(receivedTopic);
-//  Serial.println(receivedMsg);
+  Serial.println(receivedTopic);
+  Serial.println(receivedMsg);
 
 }
 
@@ -173,6 +159,7 @@ void loop()
   //
   //
   //
+  //
   // 紅外線偵測，高電位表示有人
   if (digitalRead(39)) {
     for(int i=0;i<8;i++){
@@ -251,7 +238,7 @@ void loop()
       myBitmap_max7219[6]=B11111111;
       myBitmap_max7219[7]=B00000000;
     }
-    mx.setBuffer((DEVICE_NUMBER-6)*8-1, 8, myBitmap_max7219);
+    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
     for(int i=0;i<8;i++){
       myBitmap_max7219[0]=B00000000;
       myBitmap_max7219[1]=B00000000;
@@ -262,7 +249,7 @@ void loop()
       myBitmap_max7219[6]=B00000000;
       myBitmap_max7219[7]=B11111111;
     }
-    mx.setBuffer((DEVICE_NUMBER-7)*8-1, 8, myBitmap_max7219);
+    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
     for(int i=0;i<8;i++){
       myBitmap_max7219[0]=B11111111;
       myBitmap_max7219[1]=B00000000;
@@ -273,7 +260,7 @@ void loop()
       myBitmap_max7219[6]=B00000000;
       myBitmap_max7219[7]=B00000000;
     }
-    mx.setBuffer((DEVICE_NUMBER-8)*8-1, 8, myBitmap_max7219);
+    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
     for(int i=0;i<8;i++){
       myBitmap_max7219[0]=B00000000;
       myBitmap_max7219[1]=B11111111;
@@ -284,7 +271,7 @@ void loop()
       myBitmap_max7219[6]=B00000000;
       myBitmap_max7219[7]=B00000000;
     }
-    mx.setBuffer((DEVICE_NUMBER-9)*8-1, 8, myBitmap_max7219);
+    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
     for(int i=0;i<8;i++){
       myBitmap_max7219[0]=B00000000;
       myBitmap_max7219[1]=B00000000;
@@ -295,7 +282,7 @@ void loop()
       myBitmap_max7219[6]=B00000000;
       myBitmap_max7219[7]=B00000000;
     }
-    mx.setBuffer((DEVICE_NUMBER-10)*8-1, 8, myBitmap_max7219);
+    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
     for(int i=0;i<8;i++){
       myBitmap_max7219[0]=B00000000;
       myBitmap_max7219[1]=B00000000;
@@ -306,7 +293,7 @@ void loop()
       myBitmap_max7219[6]=B00000000;
       myBitmap_max7219[7]=B00000000;
     }
-    mx.setBuffer((DEVICE_NUMBER-11)*8-1, 8, myBitmap_max7219);
+    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
     for(int i=0;i<8;i++){
       myBitmap_max7219[0]=B00000000;
       myBitmap_max7219[1]=B00000000;
@@ -317,7 +304,7 @@ void loop()
       myBitmap_max7219[6]=B00000000;
       myBitmap_max7219[7]=B00000000;
     }
-    mx.setBuffer((DEVICE_NUMBER-12)*8-1, 8, myBitmap_max7219);
+    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
     for(int i=0;i<8;i++){
       myBitmap_max7219[0]=B00000000;
       myBitmap_max7219[1]=B00000000;
@@ -328,7 +315,7 @@ void loop()
       myBitmap_max7219[6]=B00000000;
       myBitmap_max7219[7]=B00000000;
     }
-    mx.setBuffer((DEVICE_NUMBER-13)*8-1, 8, myBitmap_max7219);
+    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
     for(int i=0;i<8;i++){
       myBitmap_max7219[0]=B00000000;
       myBitmap_max7219[1]=B00000000;
@@ -339,7 +326,7 @@ void loop()
       myBitmap_max7219[6]=B11111111;
       myBitmap_max7219[7]=B00000000;
     }
-    mx.setBuffer((DEVICE_NUMBER-14)*8-1, 8, myBitmap_max7219);
+    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
     for(int i=0;i<8;i++){
       myBitmap_max7219[0]=B00000000;
       myBitmap_max7219[1]=B00000000;
@@ -350,7 +337,7 @@ void loop()
       myBitmap_max7219[6]=B00000000;
       myBitmap_max7219[7]=B11111111;
     }
-    mx.setBuffer((DEVICE_NUMBER-15)*8-1, 8, myBitmap_max7219);
+    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
   } else {
     for(int i=0;i<8;i++){
       myBitmap_max7219[0]=B11111111;
@@ -428,7 +415,7 @@ void loop()
       myBitmap_max7219[6]=B11111111;
       myBitmap_max7219[7]=B00000000;
     }
-    mx.setBuffer((DEVICE_NUMBER-6)*8-1, 8, myBitmap_max7219);
+    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
     for(int i=0;i<8;i++){
       myBitmap_max7219[0]=B00000000;
       myBitmap_max7219[1]=B00000000;
@@ -439,7 +426,7 @@ void loop()
       myBitmap_max7219[6]=B00000000;
       myBitmap_max7219[7]=B11111111;
     }
-    mx.setBuffer((DEVICE_NUMBER-7)*8-1, 8, myBitmap_max7219);
+    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
     for(int i=0;i<8;i++){
       myBitmap_max7219[0]=B11111111;
       myBitmap_max7219[1]=B00000000;
@@ -450,7 +437,7 @@ void loop()
       myBitmap_max7219[6]=B00000000;
       myBitmap_max7219[7]=B00000000;
     }
-    mx.setBuffer((DEVICE_NUMBER-8)*8-1, 8, myBitmap_max7219);
+    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
     for(int i=0;i<8;i++){
       myBitmap_max7219[0]=B00000000;
       myBitmap_max7219[1]=B11111111;
@@ -461,7 +448,7 @@ void loop()
       myBitmap_max7219[6]=B00000000;
       myBitmap_max7219[7]=B00000000;
     }
-    mx.setBuffer((DEVICE_NUMBER-9)*8-1, 8, myBitmap_max7219);
+    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
     for(int i=0;i<8;i++){
       myBitmap_max7219[0]=B00000000;
       myBitmap_max7219[1]=B00000000;
@@ -472,7 +459,7 @@ void loop()
       myBitmap_max7219[6]=B00000000;
       myBitmap_max7219[7]=B00000000;
     }
-    mx.setBuffer((DEVICE_NUMBER-10)*8-1, 8, myBitmap_max7219);
+    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
     for(int i=0;i<8;i++){
       myBitmap_max7219[0]=B00000000;
       myBitmap_max7219[1]=B00000000;
@@ -483,7 +470,7 @@ void loop()
       myBitmap_max7219[6]=B00000000;
       myBitmap_max7219[7]=B00000000;
     }
-    mx.setBuffer((DEVICE_NUMBER-11)*8-1, 8, myBitmap_max7219);
+    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
     for(int i=0;i<8;i++){
       myBitmap_max7219[0]=B00000000;
       myBitmap_max7219[1]=B00000000;
@@ -494,7 +481,7 @@ void loop()
       myBitmap_max7219[6]=B00000000;
       myBitmap_max7219[7]=B00000000;
     }
-    mx.setBuffer((DEVICE_NUMBER-12)*8-1, 8, myBitmap_max7219);
+    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
     for(int i=0;i<8;i++){
       myBitmap_max7219[0]=B00000000;
       myBitmap_max7219[1]=B00000000;
@@ -505,7 +492,7 @@ void loop()
       myBitmap_max7219[6]=B00000000;
       myBitmap_max7219[7]=B00000000;
     }
-    mx.setBuffer((DEVICE_NUMBER-13)*8-1, 8, myBitmap_max7219);
+    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
     for(int i=0;i<8;i++){
       myBitmap_max7219[0]=B00000000;
       myBitmap_max7219[1]=B00000000;
@@ -516,7 +503,7 @@ void loop()
       myBitmap_max7219[6]=B11111111;
       myBitmap_max7219[7]=B00000000;
     }
-    mx.setBuffer((DEVICE_NUMBER-14)*8-1, 8, myBitmap_max7219);
+    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
     for(int i=0;i<8;i++){
       myBitmap_max7219[0]=B00000000;
       myBitmap_max7219[1]=B00000000;
@@ -527,15 +514,10 @@ void loop()
       myBitmap_max7219[6]=B00000000;
       myBitmap_max7219[7]=B11111111;
     }
-    mx.setBuffer((DEVICE_NUMBER-15)*8-1, 8, myBitmap_max7219);
+    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
   }
 "CMoney";
 
 "xyz88888888";
-
-Serial.println(WiFi.localIP().toString());
-Serial.println(myClient.connected());
-myClient.publish(String("max7219-mqtt3").c_str(),String("發送訊息").c_str());
-delay(1000);
 
 }
