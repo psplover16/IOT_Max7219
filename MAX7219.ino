@@ -1,4 +1,4 @@
-//Generated Date: Sat, 13 Jul 2024 09:26:40 GMT
+//Generated Date: Sat, 13 Jul 2024 10:37:10 GMT
 
 #include <MD_Parola.h>
 #include <MD_MAX72xx.h>
@@ -19,7 +19,7 @@ long lastClickTime = 0;
 long btnDelay = 50;
 float balanceTempture = 25;
 float balanceHumi = 50;
-byte mqtt1[3] = {{0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}};
+byte mqtt1[3] = "";
 byte mqtt2[16] = "";
 char *max7219Char;
 String max7219Str="";
@@ -151,373 +151,374 @@ void loop()
     // 馬達驅動
     digitalWrite(33, LOW);
   }
-  // 若沒人，顯示1
-  // 若有人，顯示2
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  // 紅外線偵測，高電位表示有人
-  if (digitalRead(39)) {
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B11111111;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B11111111;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-1)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B11111111;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-2)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B11111111;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-3)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B11111111;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-4)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B11111111;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-5)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B11111111;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B11111111;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B11111111;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B11111111;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B11111111;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B11111111;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B11111111;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B11111111;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B11111111;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B11111111;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
-  } else {
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B11111111;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B11111111;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-1)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B11111111;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-2)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B11111111;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-3)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B11111111;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-4)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B11111111;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-5)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B11111111;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B11111111;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B11111111;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B11111111;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B11111111;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B11111111;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B11111111;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B11111111;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B11111111;
-      myBitmap_max7219[7]=B00000000;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
-    for(int i=0;i<8;i++){
-      myBitmap_max7219[0]=B00000000;
-      myBitmap_max7219[1]=B00000000;
-      myBitmap_max7219[2]=B00000000;
-      myBitmap_max7219[3]=B00000000;
-      myBitmap_max7219[4]=B00000000;
-      myBitmap_max7219[5]=B00000000;
-      myBitmap_max7219[6]=B00000000;
-      myBitmap_max7219[7]=B11111111;
-    }
-    mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B11111111;
+    myBitmap_max7219[1]=B00000000;
+    myBitmap_max7219[2]=B00000000;
+    myBitmap_max7219[3]=B00000000;
+    myBitmap_max7219[4]=B00000000;
+    myBitmap_max7219[5]=B00000000;
+    myBitmap_max7219[6]=B00000000;
+    myBitmap_max7219[7]=B00000000;
   }
+  mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000000;
+    myBitmap_max7219[1]=B11111111;
+    myBitmap_max7219[2]=B00000000;
+    myBitmap_max7219[3]=B00000000;
+    myBitmap_max7219[4]=B00000000;
+    myBitmap_max7219[5]=B00000000;
+    myBitmap_max7219[6]=B00000000;
+    myBitmap_max7219[7]=B00000000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-1)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000000;
+    myBitmap_max7219[1]=B00000000;
+    myBitmap_max7219[2]=B11111111;
+    myBitmap_max7219[3]=B00000000;
+    myBitmap_max7219[4]=B00000000;
+    myBitmap_max7219[5]=B00000000;
+    myBitmap_max7219[6]=B00000000;
+    myBitmap_max7219[7]=B00000000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-2)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000000;
+    myBitmap_max7219[1]=B00000000;
+    myBitmap_max7219[2]=B00000000;
+    myBitmap_max7219[3]=B11111111;
+    myBitmap_max7219[4]=B00000000;
+    myBitmap_max7219[5]=B00000000;
+    myBitmap_max7219[6]=B00000000;
+    myBitmap_max7219[7]=B00000000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-3)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000000;
+    myBitmap_max7219[1]=B00000000;
+    myBitmap_max7219[2]=B00000000;
+    myBitmap_max7219[3]=B00000000;
+    myBitmap_max7219[4]=B11111111;
+    myBitmap_max7219[5]=B00000000;
+    myBitmap_max7219[6]=B00000000;
+    myBitmap_max7219[7]=B00000000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-4)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000000;
+    myBitmap_max7219[1]=B00000000;
+    myBitmap_max7219[2]=B00000000;
+    myBitmap_max7219[3]=B00000000;
+    myBitmap_max7219[4]=B00000000;
+    myBitmap_max7219[5]=B11111111;
+    myBitmap_max7219[6]=B00000000;
+    myBitmap_max7219[7]=B00000000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-5)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000000;
+    myBitmap_max7219[1]=B00000000;
+    myBitmap_max7219[2]=B00000000;
+    myBitmap_max7219[3]=B00000000;
+    myBitmap_max7219[4]=B00000000;
+    myBitmap_max7219[5]=B00000000;
+    myBitmap_max7219[6]=B11111111;
+    myBitmap_max7219[7]=B00000000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-6)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000000;
+    myBitmap_max7219[1]=B00000000;
+    myBitmap_max7219[2]=B00000000;
+    myBitmap_max7219[3]=B00000000;
+    myBitmap_max7219[4]=B00000000;
+    myBitmap_max7219[5]=B00000000;
+    myBitmap_max7219[6]=B00000000;
+    myBitmap_max7219[7]=B11111111;
+  }
+  mx.setBuffer((DEVICE_NUMBER-7)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B11111111;
+    myBitmap_max7219[1]=B00000001;
+    myBitmap_max7219[2]=B00000001;
+    myBitmap_max7219[3]=B00000001;
+    myBitmap_max7219[4]=B00000001;
+    myBitmap_max7219[5]=B00000001;
+    myBitmap_max7219[6]=B00000001;
+    myBitmap_max7219[7]=B00000001;
+  }
+  mx.setBuffer((DEVICE_NUMBER-8)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000010;
+    myBitmap_max7219[1]=B11111111;
+    myBitmap_max7219[2]=B00000010;
+    myBitmap_max7219[3]=B00000010;
+    myBitmap_max7219[4]=B00000010;
+    myBitmap_max7219[5]=B00000010;
+    myBitmap_max7219[6]=B00000010;
+    myBitmap_max7219[7]=B00000010;
+  }
+  mx.setBuffer((DEVICE_NUMBER-9)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00001000;
+    myBitmap_max7219[1]=B00001000;
+    myBitmap_max7219[2]=B00001000;
+    myBitmap_max7219[3]=B11111111;
+    myBitmap_max7219[4]=B00001000;
+    myBitmap_max7219[5]=B00001000;
+    myBitmap_max7219[6]=B00001000;
+    myBitmap_max7219[7]=B00001000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-10)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00010000;
+    myBitmap_max7219[1]=B00010000;
+    myBitmap_max7219[2]=B00010000;
+    myBitmap_max7219[3]=B00010000;
+    myBitmap_max7219[4]=B11111111;
+    myBitmap_max7219[5]=B00010000;
+    myBitmap_max7219[6]=B00010000;
+    myBitmap_max7219[7]=B00010000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-11)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00100000;
+    myBitmap_max7219[1]=B00100000;
+    myBitmap_max7219[2]=B00100000;
+    myBitmap_max7219[3]=B00100000;
+    myBitmap_max7219[4]=B00100000;
+    myBitmap_max7219[5]=B11111111;
+    myBitmap_max7219[6]=B00100000;
+    myBitmap_max7219[7]=B00100000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-12)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B01000000;
+    myBitmap_max7219[1]=B01000000;
+    myBitmap_max7219[2]=B01000000;
+    myBitmap_max7219[3]=B01000000;
+    myBitmap_max7219[4]=B01000000;
+    myBitmap_max7219[5]=B01000000;
+    myBitmap_max7219[6]=B11111111;
+    myBitmap_max7219[7]=B01000000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-13)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B10000000;
+    myBitmap_max7219[1]=B10000000;
+    myBitmap_max7219[2]=B10000000;
+    myBitmap_max7219[3]=B10000000;
+    myBitmap_max7219[4]=B10000000;
+    myBitmap_max7219[5]=B10000000;
+    myBitmap_max7219[6]=B10000000;
+    myBitmap_max7219[7]=B11111111;
+  }
+  mx.setBuffer((DEVICE_NUMBER-14)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000100;
+    myBitmap_max7219[1]=B00000100;
+    myBitmap_max7219[2]=B11111111;
+    myBitmap_max7219[3]=B00000100;
+    myBitmap_max7219[4]=B00000100;
+    myBitmap_max7219[5]=B00000100;
+    myBitmap_max7219[6]=B00000100;
+    myBitmap_max7219[7]=B00000100;
+  }
+  mx.setBuffer((DEVICE_NUMBER-15)*8-1, 8, myBitmap_max7219);
 "CMoney";
 
 "xyz88888888";
+
+// 若沒人，顯示1
+// 若有人，顯示2
+//
+//
+//
+//
+//
+//
+//
+// 紅外線偵測，高電位表示有人
+if (digitalRead(39)) {
+} else {
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B11111111;
+    myBitmap_max7219[1]=B00000000;
+    myBitmap_max7219[2]=B00000000;
+    myBitmap_max7219[3]=B00000000;
+    myBitmap_max7219[4]=B00000000;
+    myBitmap_max7219[5]=B00000000;
+    myBitmap_max7219[6]=B00000000;
+    myBitmap_max7219[7]=B00000000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-0)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000000;
+    myBitmap_max7219[1]=B11111111;
+    myBitmap_max7219[2]=B00000000;
+    myBitmap_max7219[3]=B00000000;
+    myBitmap_max7219[4]=B00000000;
+    myBitmap_max7219[5]=B00000000;
+    myBitmap_max7219[6]=B00000000;
+    myBitmap_max7219[7]=B00000000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-1)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000000;
+    myBitmap_max7219[1]=B00000000;
+    myBitmap_max7219[2]=B11111111;
+    myBitmap_max7219[3]=B00000000;
+    myBitmap_max7219[4]=B00000000;
+    myBitmap_max7219[5]=B00000000;
+    myBitmap_max7219[6]=B00000000;
+    myBitmap_max7219[7]=B00000000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-2)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000000;
+    myBitmap_max7219[1]=B00000000;
+    myBitmap_max7219[2]=B00000000;
+    myBitmap_max7219[3]=B11111111;
+    myBitmap_max7219[4]=B00000000;
+    myBitmap_max7219[5]=B00000000;
+    myBitmap_max7219[6]=B00000000;
+    myBitmap_max7219[7]=B00000000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-3)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000000;
+    myBitmap_max7219[1]=B00000000;
+    myBitmap_max7219[2]=B00000000;
+    myBitmap_max7219[3]=B00000000;
+    myBitmap_max7219[4]=B11111111;
+    myBitmap_max7219[5]=B00000000;
+    myBitmap_max7219[6]=B00000000;
+    myBitmap_max7219[7]=B00000000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-4)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000000;
+    myBitmap_max7219[1]=B00000000;
+    myBitmap_max7219[2]=B00000000;
+    myBitmap_max7219[3]=B00000000;
+    myBitmap_max7219[4]=B00000000;
+    myBitmap_max7219[5]=B11111111;
+    myBitmap_max7219[6]=B00000000;
+    myBitmap_max7219[7]=B00000000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-5)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000000;
+    myBitmap_max7219[1]=B00000000;
+    myBitmap_max7219[2]=B00000000;
+    myBitmap_max7219[3]=B00000000;
+    myBitmap_max7219[4]=B00000000;
+    myBitmap_max7219[5]=B00000000;
+    myBitmap_max7219[6]=B11111111;
+    myBitmap_max7219[7]=B00000000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-6)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000000;
+    myBitmap_max7219[1]=B00000000;
+    myBitmap_max7219[2]=B00000000;
+    myBitmap_max7219[3]=B00000000;
+    myBitmap_max7219[4]=B00000000;
+    myBitmap_max7219[5]=B00000000;
+    myBitmap_max7219[6]=B00000000;
+    myBitmap_max7219[7]=B11111111;
+  }
+  mx.setBuffer((DEVICE_NUMBER-7)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B11111111;
+    myBitmap_max7219[1]=B00000000;
+    myBitmap_max7219[2]=B00000000;
+    myBitmap_max7219[3]=B00000000;
+    myBitmap_max7219[4]=B00000000;
+    myBitmap_max7219[5]=B00000000;
+    myBitmap_max7219[6]=B00000000;
+    myBitmap_max7219[7]=B00000000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-8)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000000;
+    myBitmap_max7219[1]=B11111111;
+    myBitmap_max7219[2]=B00000000;
+    myBitmap_max7219[3]=B00000000;
+    myBitmap_max7219[4]=B00000000;
+    myBitmap_max7219[5]=B00000000;
+    myBitmap_max7219[6]=B00000000;
+    myBitmap_max7219[7]=B00000000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-9)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000000;
+    myBitmap_max7219[1]=B00000000;
+    myBitmap_max7219[2]=B11111111;
+    myBitmap_max7219[3]=B00000000;
+    myBitmap_max7219[4]=B00000000;
+    myBitmap_max7219[5]=B00000000;
+    myBitmap_max7219[6]=B00000000;
+    myBitmap_max7219[7]=B00000000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-10)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000000;
+    myBitmap_max7219[1]=B00000000;
+    myBitmap_max7219[2]=B00000000;
+    myBitmap_max7219[3]=B11111111;
+    myBitmap_max7219[4]=B00000000;
+    myBitmap_max7219[5]=B00000000;
+    myBitmap_max7219[6]=B00000000;
+    myBitmap_max7219[7]=B00000000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-11)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000000;
+    myBitmap_max7219[1]=B00000000;
+    myBitmap_max7219[2]=B00000000;
+    myBitmap_max7219[3]=B00000000;
+    myBitmap_max7219[4]=B11111111;
+    myBitmap_max7219[5]=B00000000;
+    myBitmap_max7219[6]=B00000000;
+    myBitmap_max7219[7]=B00000000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-12)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000000;
+    myBitmap_max7219[1]=B00000000;
+    myBitmap_max7219[2]=B00000000;
+    myBitmap_max7219[3]=B00000000;
+    myBitmap_max7219[4]=B00000000;
+    myBitmap_max7219[5]=B11111111;
+    myBitmap_max7219[6]=B00000000;
+    myBitmap_max7219[7]=B00000000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-13)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000000;
+    myBitmap_max7219[1]=B00000000;
+    myBitmap_max7219[2]=B00000000;
+    myBitmap_max7219[3]=B00000000;
+    myBitmap_max7219[4]=B00000000;
+    myBitmap_max7219[5]=B00000000;
+    myBitmap_max7219[6]=B11111111;
+    myBitmap_max7219[7]=B00000000;
+  }
+  mx.setBuffer((DEVICE_NUMBER-14)*8-1, 8, myBitmap_max7219);
+  for(int i=0;i<8;i++){
+    myBitmap_max7219[0]=B00000000;
+    myBitmap_max7219[1]=B00000000;
+    myBitmap_max7219[2]=B00000000;
+    myBitmap_max7219[3]=B00000000;
+    myBitmap_max7219[4]=B00000000;
+    myBitmap_max7219[5]=B00000000;
+    myBitmap_max7219[6]=B00000000;
+    myBitmap_max7219[7]=B11111111;
+  }
+  mx.setBuffer((DEVICE_NUMBER-15)*8-1, 8, myBitmap_max7219);
+}
 
 }
