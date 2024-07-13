@@ -17,8 +17,8 @@ boolean canClickBtn = false;
 int lastBtnState = false;
 long lastClickTime = 0;
 long btnDelay = 50;
-float balanceTempture = 25;
-float balanceHumi = 50;
+float balanceTempture = 10;
+float balanceHumi = 0;
 uint8_t mqtt1[16][8] = {{0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0},{0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0},
 {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0},{0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}};
 uint8_t mqtt2[16][8] = {{0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0},{0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0},
@@ -39,7 +39,7 @@ bool pubCtrl=false;
 WiFiClient mqttClient;
 PubSubClient myClient(mqttClient);
 
-DHT dht11_p36(36, DHT11);
+DHT dht11_p25(25, DHT11);
 uint8_t myBitmap_max7219[8] ={0};
 void connectMQTT(){
   while (!myClient.connected()){
@@ -50,7 +50,7 @@ void connectMQTT(){
   }
 }
 
-void strToMqtt1(String str, uint8_t mqtt[][8],int rows,int cols) {
+void strToUint8(String str, uint8_t mqtt[][8],int rows,int cols) {
   for (int i = 0; i < rows; i++) {
     for (int j = 0; j < cols; j++) {
       String subStr = str.substring((i * 8 + j) * 8, (i * 8 + j + 1) * 8);
@@ -69,14 +69,11 @@ void mqttCallback(char* topic, byte* payload, unsigned int length){
   receivedMsg.trim();
   Serial.println(receivedTopic);
   if(receivedTopic == "max7219-mqtt1"){
-    strToMqtt1(receivedMsg, mqtt1,16,8);
+    strToUint8(receivedMsg, mqtt1,16,8);
   }
-
-//  if(receivedTopic == "max7219-mqtt2"){
-//    strToMqtt1(receivedMsg, mqtt2);
-//  }
-
-//  Serial.println(receivedMsg);
+  if(receivedTopic == "max7219-mqtt2"){
+    strToUint8(receivedMsg, mqtt2,16,8);
+  }
   initMax7219(mqtt1);
 }
 
@@ -85,8 +82,7 @@ void initMax7219(byte mqtt[16][8]){
      for(int j=0;j<8;j++){
       myBitmap_max7219[j]=mqtt[i][j];
     }
-    mx.setBuffer((DEVICE_NUMBER-i)*8-1, 8, myBitmap_max7219);
-  
+    mx.setBuffer((DEVICE_NUMBER-i)*8-1, 8, myBitmap_max7219);  
   }
 }
 
@@ -126,7 +122,7 @@ void setup()
   connectMQTT();
   myClient.subscribe(String("max7219-mqtt1").c_str());
   myClient.subscribe(String("max7219-mqtt2").c_str());
-  dht11_p36.begin();
+  dht11_p25.begin();
   pinMode(33, OUTPUT);
 }
 
@@ -175,7 +171,9 @@ void loop()
   }
   // 按鈕
   lastBtnState = digitalRead(2);
-  if (dht11_p36.readTemperature() >= balanceTempture && dht11_p36.readHumidity() >= balanceHumi) {
+  Serial.println(dht11_p25.readTemperature());
+    Serial.println(dht11_p25.readHumidity());
+  if (dht11_p25.readTemperature() >= balanceTempture && dht11_p25.readHumidity() >= balanceHumi) {
     // 馬達驅動
     digitalWrite(33, HIGH);
   } else {
@@ -184,12 +182,6 @@ void loop()
   }
   // 若沒人，顯示1
   // 若有人，顯示2
-  //
-  //
-  //
-  //
-  //
-  //
   //
   // 紅外線偵測，高電位表示有人
 //  if (digitalRead(39)) {
