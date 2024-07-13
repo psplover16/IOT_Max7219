@@ -1,4 +1,4 @@
-//Generated Date: Sat, 13 Jul 2024 03:09:28 GMT
+//Generated Date: Sat, 13 Jul 2024 03:59:57 GMT
 
 #include <MD_Parola.h>
 #include <MD_MAX72xx.h>
@@ -19,6 +19,8 @@ long lastClickTime = 0;
 long btnDelay = 50;
 float balanceTempture = 25;
 float balanceHumi = 50;
+byte mqtt1[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+byte mqtt2[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 char *max7219Char;
 String max7219Str="";
 MD_Parola myDisplay = MD_Parola(HARDWARE_TYPE,4,17,16,DEVICE_NUMBER);
@@ -68,6 +70,8 @@ void setup()
   mx.begin();
   pinMode(39, INPUT);
   pinMode(2, INPUT);
+  pinMode(22, OUTPUT);
+  pinMode(21, OUTPUT);
   // 是否能按按鈕
   // 上次按鈕電位狀態
   // 上次按鈕時間
@@ -76,6 +80,10 @@ void setup()
   digitalWrite(39, LOW);
   // 按鈕
   digitalWrite(2, LOW);
+  // 按鈕
+  digitalWrite(22, LOW);
+  // 按鈕
+  digitalWrite(21, LOW);
   WiFi.disconnect();
   WiFi.softAPdisconnect(true);
   WiFi.mode(WIFI_STA);
@@ -96,6 +104,20 @@ void loop()
   myClient.loop();
   Serial.println(WiFi.localIP().toString());
   Serial.println(myClient.connected());
+  if ((WiFi.status() != WL_CONNECTED)) {
+    // 按鈕
+    digitalWrite(22, HIGH);
+  } else {
+    // 按鈕
+    digitalWrite(22, LOW);
+  }
+  if (!myClient.connected()) {
+    // 按鈕
+    digitalWrite(21, HIGH);
+  } else {
+    // 按鈕
+    digitalWrite(21, LOW);
+  }
   // 按下按鈕>比對時間>紀錄時間
   // 按鈕
   if (digitalRead(2) != lastBtnState) {
@@ -114,7 +136,7 @@ void loop()
         while (WiFi.status() != WL_CONNECTED) { delay(500); }
         delay(300);
       }
-      if (myClient.connected()) {
+      if (!myClient.connected()) {
         connectMQTT();
       }
       canClickBtn = true;
@@ -133,6 +155,7 @@ void loop()
   }
   // 若沒人，顯示1
   // 若有人，顯示2
+  //
   //
   //
   //
