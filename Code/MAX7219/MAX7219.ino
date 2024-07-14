@@ -42,12 +42,13 @@ PubSubClient myClient(mqttClient);
 DHT dht11_p25(25, DHT11);
 uint8_t myBitmap_max7219[8] ={0};
 void connectMQTT(){
-  while (!myClient.connected()){
-    if (!myClient.connect(MQTT_ID,MQTT_USERNAME,MQTT_PASSWORD))
-    {
-      delay(5000);
-    }
-  }
+//  while (!myClient.connected()){
+//    if (!myClient.connect(MQTT_ID,MQTT_USERNAME,MQTT_PASSWORD))
+//    {
+//      delay(5000);
+//    }
+//  }
+myClient.connect(MQTT_ID,MQTT_USERNAME,MQTT_PASSWORD);
 }
 
 void strToUint8(String str, uint8_t mqtt[][8],int rows,int cols) {
@@ -115,7 +116,7 @@ void setup()
   WiFi.softAPdisconnect(true);
   WiFi.mode(WIFI_STA);
   WiFi.begin(_lwifi_ssid, _lwifi_pass);
-  while (WiFi.status() != WL_CONNECTED) { delay(500); }
+//  while (WiFi.status() != WL_CONNECTED) { delay(500); }
   delay(300);
   myClient.setServer(MQTT_SERVER_IP, MQTT_SERVER_PORT);
   myClient.setCallback(mqttCallback);
@@ -145,34 +146,41 @@ void loop()
   }
   // 按下按鈕>比對時間>紀錄時間
   // 按鈕
+//  Serial.println("Z");
+//  Serial.println(digitalRead(2));
+//    Serial.println(lastBtnState);
+  
   if (digitalRead(2) != lastBtnState) {
+    Serial.println("1");
     lastClickTime = millis();
   }
   // 按下按鈕>比對時間>紀錄時間
-  if (millis() - lastClickTime > btnDelay) {
-    // 按鈕
+  if ((millis() - lastClickTime) > btnDelay) {
+              Serial.println("Z1");
     // 按鈕
     if (canClickBtn == false && digitalRead(2)) {
-      if ((WiFi.status() != WL_CONNECTED)) {
-        WiFi.disconnect();
-        WiFi.softAPdisconnect(true);
-        WiFi.mode(WIFI_STA);
-        WiFi.begin(_lwifi_ssid, _lwifi_pass);
-        while (WiFi.status() != WL_CONNECTED) { delay(500); }
-        delay(300);
-      }
-      if (!myClient.connected()) {
-        connectMQTT();
-      }
+          Serial.println("2");
+//      if ((WiFi.status() != WL_CONNECTED)) {
+//        WiFi.disconnect();
+//        WiFi.softAPdisconnect(true);
+//        WiFi.mode(WIFI_STA);
+//        WiFi.begin(_lwifi_ssid, _lwifi_pass);
+//        while (WiFi.status() != WL_CONNECTED) { delay(500); }
+//        delay(300);
+//      }
+//      if (!myClient.connected()) {
+//        connectMQTT();
+//      }
       canClickBtn = true;
     } else if (canClickBtn == true && !digitalRead(2)) {
+          Serial.println("3");
       canClickBtn = false;
     }
   }
   // 按鈕
   lastBtnState = digitalRead(2);
-  Serial.println(dht11_p25.readTemperature());
-    Serial.println(dht11_p25.readHumidity());
+//  Serial.println(dht11_p25.readTemperature());
+//    Serial.println(dht11_p25.readHumidity());
   if (dht11_p25.readTemperature() >= balanceTempture && dht11_p25.readHumidity() >= balanceHumi) {
     // 馬達驅動
     digitalWrite(33, HIGH);
