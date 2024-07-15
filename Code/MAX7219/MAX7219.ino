@@ -12,11 +12,11 @@
 #define MQTT_USERNAME ""
 #define MQTT_PASSWORD ""
 #include <DHT.h>
+#include <ezButton.h>
 
-boolean canClickBtn = false;
-int lastBtnState = false;
-long lastClickTime = 0;
-long btnDelay = 50;
+ezButton resetBtn(2);
+int btnDelay = 50;
+
 float balanceTempture = 10;
 float balanceHumi = 0;
 uint8_t mqtt1[16][8] = {{0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0},{0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0},
@@ -28,8 +28,10 @@ String max7219Str="";
 MD_Parola myDisplay = MD_Parola(HARDWARE_TYPE,4,17,16,DEVICE_NUMBER);
 MD_MAX72XX mx = MD_MAX72XX(HARDWARE_TYPE,4,17,16,DEVICE_NUMBER);
 
-char _lwifi_ssid[] = "Gary";
-char _lwifi_pass[] = "0972728710";
+ char _lwifi_ssid[] = "Gary";
+ char _lwifi_pass[] = "0972728710";
+//char _lwifi_ssid[] = "CMoney";
+//char _lwifi_pass[] = "xyz8888888";
 String receivedTopic="";
 String receivedMsg="";
 bool waitForE=true;
@@ -88,16 +90,16 @@ void initMax7219(byte mqtt[16][8]){
 }
 
 
-
 void setup()
 {
   Serial.begin(115200);
+  resetBtn.setDebounceTime(50);
 
   myDisplay.begin();
   myDisplay.displayClear();
   mx.begin();
   pinMode(39, INPUT);
-  pinMode(2, INPUT);
+
   pinMode(22, OUTPUT);
   pinMode(21, OUTPUT);
   // 是否能按按鈕
@@ -106,8 +108,7 @@ void setup()
   // 彈跳延遲時間
   //  HC-HR501
   digitalWrite(39, LOW);
-  // 按鈕
-  digitalWrite(2, LOW);
+
   // 按鈕
   digitalWrite(22, LOW);
   // 按鈕
@@ -129,19 +130,31 @@ void setup()
 
 void loop()
 {
+
+  resetBtn.loop();
+  if (resetBtn.isPressed()) {
+    Serial.println("按鈕被按下");
+          if ((WiFi.status() != WL_CONNECTED)) {
+        WiFi.disconnect();
+        WiFi.softAPdisconnect(true);
+        WiFi.mode(WIFI_STA);
+        WiFi.begin(_lwifi_ssid, _lwifi_pass);
+//        while (WiFi.status() != WL_CONNECTED) { delay(500); }
+        delay(300);
+      }
+      if (!myClient.connected()) {
+        connectMQTT();
+      }
+  }
   myClient.loop();
   if ((WiFi.status() != WL_CONNECTED)) {
-    // 按鈕
     digitalWrite(22, HIGH);
   } else {
-    // 按鈕
     digitalWrite(22, LOW);
   }
   if (!myClient.connected()) {
-    // 按鈕
     digitalWrite(21, HIGH);
   } else {
-    // 按鈕
     digitalWrite(21, LOW);
   }
   // 按下按鈕>比對時間>紀錄時間
@@ -150,16 +163,10 @@ void loop()
 //  Serial.println(digitalRead(2));
 //    Serial.println(lastBtnState);
   
-  if (digitalRead(2) != lastBtnState) {
-    Serial.println("1");
-    lastClickTime = millis();
-  }
-  // 按下按鈕>比對時間>紀錄時間
-  if ((millis() - lastClickTime) > btnDelay) {
-              Serial.println("Z1");
+       
     // 按鈕
-    if (canClickBtn == false && digitalRead(2)) {
-          Serial.println("2");
+
+         
 //      if ((WiFi.status() != WL_CONNECTED)) {
 //        WiFi.disconnect();
 //        WiFi.softAPdisconnect(true);
@@ -171,23 +178,17 @@ void loop()
 //      if (!myClient.connected()) {
 //        connectMQTT();
 //      }
-      canClickBtn = true;
-    } else if (canClickBtn == true && !digitalRead(2)) {
-          Serial.println("3");
-      canClickBtn = false;
-    }
-  }
-  // 按鈕
-  lastBtnState = digitalRead(2);
+
+
 //  Serial.println(dht11_p25.readTemperature());
 //    Serial.println(dht11_p25.readHumidity());
-  if (dht11_p25.readTemperature() >= balanceTempture && dht11_p25.readHumidity() >= balanceHumi) {
-    // 馬達驅動
-    digitalWrite(33, HIGH);
-  } else {
-    // 馬達驅動
-    digitalWrite(33, LOW);
-  }
+//  if (dht11_p25.readTemperature() >= balanceTempture && dht11_p25.readHumidity() >= balanceHumi) {
+//    // 馬達驅動
+//    digitalWrite(33, HIGH);
+//  } else {
+//    // 馬達驅動
+//    digitalWrite(33, LOW);
+//  }
   // 若沒人，顯示1
   // 若有人，顯示2
   //
