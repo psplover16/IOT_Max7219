@@ -54,7 +54,6 @@ int connectMQTTDelay = 2000;
 // 若連不上wifi，延遲N秒再嘗試
 int connectWIFIDelay = 500;
 // 
-// 
 void connectMQTT(bool needDelay = true){
   int impLoop = 0;
   if(needDelay){
@@ -66,6 +65,8 @@ void connectMQTT(bool needDelay = true){
       }
   }
   myClient.connect(MQTT_ID,MQTT_USERNAME,MQTT_PASSWORD);
+  myClient.subscribe(String("max7219-mqtt1").c_str());
+  myClient.subscribe(String("max7219-mqtt2").c_str());
 }
 
 void connectWIFI(bool needDelay = true){
@@ -144,8 +145,6 @@ void setup()
   myClient.setServer(MQTT_SERVER_IP, MQTT_SERVER_PORT);
   myClient.setCallback(mqttCallback);
   connectMQTT();
-  myClient.subscribe(String("max7219-mqtt1").c_str());
-  myClient.subscribe(String("max7219-mqtt2").c_str());
   dht11_p25.begin();
   // 宣告馬達驅動
   pinMode(33, OUTPUT);
