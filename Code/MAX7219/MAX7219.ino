@@ -53,6 +53,20 @@ uint8_t myBitmap_max7219[8] ={0};
 int connectMQTTDelay = 2000;
 // 若連不上wifi，延遲N秒再嘗試
 int connectWIFIDelay = 500;
+// HC-SR501紅外線模組
+int infraredPin = 39;
+int lastInfraredMode = 0; // 上次運行哪一種模式?  0是紅外線沒偵測到人
+int infraedFunc = 1; // 紅外線功能是否開啟
+// 馬達功能是否開啟
+int motorPin = 33;
+int motorFunc = 1;
+// LED提示連線PIN
+int wifiNotice = 22;
+int mqttNotice = 21;
+// MQTT 所要連上的Topic
+String mqtt1Topic = "max7219-mqtt1";
+String mqtt2Topic = "max7219-mqtt2";
+String mqtt_Setting = "max7219-setting";
 // 
 void connectMQTT(bool needDelay = true){
   int impLoop = 0;
@@ -61,12 +75,13 @@ void connectMQTT(bool needDelay = true){
       if (!myClient.connect(MQTT_ID,MQTT_USERNAME,MQTT_PASSWORD)){
         delay(connectMQTTDelay);
         impLoop++;
-        }
       }
+    }
   }
   myClient.connect(MQTT_ID,MQTT_USERNAME,MQTT_PASSWORD);
-  myClient.subscribe(String("max7219-mqtt1").c_str());
-  myClient.subscribe(String("max7219-mqtt2").c_str());
+  myClient.subscribe(String(mqtt1Topic).c_str());
+  myClient.subscribe(String(mqtt2Topic).c_str());
+  myClient.subscribe(String(mqtt_Setting).c_str());  
 }
 
 void connectWIFI(bool needDelay = true){
@@ -97,7 +112,7 @@ void strToUint8(String str, uint8_t mqtt[][8],int rows,int cols) {
     Serial.print(" ");
   }
   Serial.println();
-}
+  }
 }
 
 void mqttCallback(char* topic, byte* payload, unsigned int length){
@@ -109,13 +124,20 @@ void mqttCallback(char* topic, byte* payload, unsigned int length){
   }
   receivedMsg.trim();
   Serial.println(receivedTopic);
-  if(receivedTopic == "max7219-mqtt1"){
+  if(receivedTopic == mqtt1Topic){
     strToUint8(receivedMsg, mqtt1,16,8);
   }
-  if(receivedTopic == "max7219-mqtt2"){
+  if(receivedTopic == mqtt2Topic){
     strToUint8(receivedMsg, mqtt2,16,8);
   }
-  initMax7219(mqtt1);
+  if(receivedTopic == mqtt_Setting){
+    infraedFunc = receivedMsg.charAt(0) - '0';
+    motorFunc = receivedMsg.charAt(1) - '0';;
+  }
+  if(!infraedFunc){ 
+    initMax7219(mqtt1);
+    lastInfraredMode = 0;
+  }; // 紅外線功能沒有開啟，則預設顯示MQTT1
 }
 
 void initMax7219(byte mqtt[16][8]){
@@ -138,14 +160,14 @@ void setup()
   myDisplay.displayClear();
   mx.begin();
   // HC-HR501
-  pinMode(39, INPUT);
-  digitalWrite(39, LOW);
+  pinMode(infraredPin, INPUT);
+  digitalWrite(infraredPin, LOW);
   // WIFI提示的LED狀態
-  pinMode(22, OUTPUT);
-  digitalWrite(22, LOW);
+  pinMode(wifiNotice, OUTPUT);
+  digitalWrite(wifiNotice, LOW);
   // MQTT提示的LED狀態
-  pinMode(21, OUTPUT);
-  digitalWrite(21, LOW);
+  pinMode(mqttNotice, OUTPUT);
+  digitalWrite(mqttNotice, LOW);
   // WIFI連線
   connectWIFI();
   // MQTT
@@ -154,7 +176,8 @@ void setup()
   connectMQTT();
   dht11_p25.begin();
   // 宣告馬達驅動
-  pinMode(33, OUTPUT);
+  pinMode(motorPin, OUTPUT);
+  digitalWrite(motorPin, LOW);
 }
 
 void loop()
@@ -173,37 +196,46 @@ void loop()
   }
 
   if ((WiFi.status() != WL_CONNECTED)) {
-    digitalWrite(22, HIGH);
+    digitalWrite(wifiNotice, HIGH);
   } else {
-    digitalWrite(22, LOW);
+    digitalWrite(wifiNotice, LOW);
   }
   if (!myClient.connected()) {
-    digitalWrite(21, HIGH);
+    digitalWrite(mqttNotice, HIGH);
   } else {
-    digitalWrite(21, LOW);
+    digitalWrite(mqttNotice, LOW);
   }
 
-  // Serial.println(dht11_p25.readTemperature());
-  // Serial.println(dht11_p25.readHumidity());
-  if (dht11_p25.readTemperature() >= balanceTempture && dht11_p25.readHumidity() >= balanceHumi) {
-    // 馬達驅動
-    digitalWrite(33, HIGH);
-  } else {
-    // 馬達驅動
-    digitalWrite(33, LOW);
+  // 馬達驅動
+  if(motorFunc){
+    if (dht11_p25.readTemperature() >= balanceTempture && dht11_p25.readHumidity() >= balanceHumi) {
+      // 馬達驅動
+      digitalWrite(motorPin, HIGH);
+    } else {
+      // 馬達驅動
+      digitalWrite(motorPin, LOW);
+    }
+  }else{
+      digitalWrite(motorPin, LOW);
+  }    
+  // 預設有紅外線
+  if(infraedFunc){ 
+    // 紅外線沒偵測，高電位表示有人
+    // 若沒人，顯示1
+    // 若有人，顯示2
+    if (!digitalRead(infraredPin) && lastInfraredMode!=0) {
+      initMax7219(mqtt1);
+      lastInfraredMode = 0;
+    } else if(digitalRead(infraredPin) && lastInfraredMode!=1){
+      initMax7219(mqtt2);
+      lastInfraredMode = 1;
+    }
+  }else{
+    // 若沒有紅外線則會顯示 第一模式
+    lastInfraredMode = 0;
   }
-  // 
-  // 若沒人，顯示1
-  // 若有人，顯示2
-  //
-  // 紅外線偵測，高電位表示有人
-  if (digitalRead(39)) {
-//    initMax7219(mqtt1);
-    Serial.println("有");
-  } else {
-//    initMax7219(mqtt2);
-    Serial.println("無 ");
-  }
+
+  // max7219 重複顯示
   if (myDisplay.displayAnimate()) {myDisplay.displayReset();}
 
 }
