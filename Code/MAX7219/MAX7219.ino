@@ -14,7 +14,7 @@
 #include <ezButton.h>
 
 // 彈跳按鈕
-ezButton resetBtn(2);
+ezButton resetBtn(16);
 int btnDelay = 50;
 // 迴圈最多跑幾次??
 int maxLoop = 2;
@@ -30,8 +30,9 @@ uint8_t mqtt2[16][8] = {{255, 255, 255, 255, 255, 255, 255, 255}, {255, 255, 255
 {255, 255, 255, 255, 255, 255, 255, 255}, {255, 255, 255, 255, 255, 255, 255, 255}, {255, 255, 255, 255, 255, 255, 255, 255}, {255, 255, 255, 255, 255, 255, 255, 255},{255, 255, 255, 255, 255, 255, 255, 255}, {255, 255, 255, 255, 255, 255, 255, 255}, {255, 255, 255, 255, 255, 255, 255, 255}, {255, 255, 255, 255, 255, 255, 255, 255}};
 // char *max7219Char;
 // String max7219Str="";
-MD_Parola myDisplay = MD_Parola(HARDWARE_TYPE,4,17,16,DEVICE_NUMBER);
-MD_MAX72XX mx = MD_MAX72XX(HARDWARE_TYPE,4,17,16,DEVICE_NUMBER);
+MD_Parola myDisplay = MD_Parola(HARDWARE_TYPE,25,32,33,DEVICE_NUMBER);
+MD_MAX72XX mx = MD_MAX72XX(HARDWARE_TYPE,25,32,33,DEVICE_NUMBER);
+
 // wifi 連線資料
 char _lwifi_ssid[] = "Gary";
 char _lwifi_pass[] = "0972728710";
@@ -46,7 +47,7 @@ String receivedMsg="";
 // bool pubCtrl=false;
 WiFiClient mqttClient;
 PubSubClient myClient(mqttClient);
-DHT dht11_p25(25, DHT11);
+DHT dht11_p25(23, DHT11);
 // 把MQTT字串轉為 max7219用的資料，所需要的暫存參數
 uint8_t myBitmap_max7219[8] ={0};
 // 若連不上MQTT，延遲N秒再嘗試
@@ -54,15 +55,15 @@ int connectMQTTDelay = 2000;
 // 若連不上wifi，延遲N秒再嘗試
 int connectWIFIDelay = 500;
 // HC-SR501紅外線模組
-int infraredPin = 39;
+int infraredPin = 4;
 int lastInfraredMode = 0; // 上次運行哪一種模式?  0是紅外線沒偵測到人
 int infraedFunc = 1; // 紅外線功能是否開啟
 // 馬達功能是否開啟
-int motorPin = 33;
+int motorPin = 13;
 int motorFunc = 1;
 // LED提示連線PIN
-int wifiNotice = 22;
-int mqttNotice = 21;
+int wifiNotice = 27;
+int mqttNotice = 26;
 // MQTT 所要連上的Topic
 String mqtt1Topic = "max7219-mqtt1";
 String mqtt2Topic = "max7219-mqtt2";
@@ -200,11 +201,15 @@ void loop()
   } else {
     digitalWrite(wifiNotice, LOW);
   }
+   Serial.println("WIFI");
+      Serial.println(WiFi.status());
   if (!myClient.connected()) {
     digitalWrite(mqttNotice, HIGH);
   } else {
     digitalWrite(mqttNotice, LOW);
   }
+   Serial.println("MQTT");
+Serial.println(myClient.connected());
 
   // 馬達驅動
   if(motorFunc){
