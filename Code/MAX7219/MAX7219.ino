@@ -14,7 +14,8 @@
 #include <ezButton.h>
 
 // 彈跳按鈕
-ezButton resetBtn(16);
+int resetBtnPin = 16;
+ezButton resetBtn(resetBtnPin);
 int btnDelay = 50;
 // 迴圈最多跑幾次??
 int maxLoop = 2;
@@ -107,13 +108,6 @@ void strToUint8(String str, uint8_t mqtt[][8],int rows,int cols) {
       mqtt[i][j] = strtol(subStr.c_str(), NULL, 2);
     }
   }
-  for (int k = 0; k < sizeof(mqtt) / sizeof(mqtt[0]); k++) {
-  for (int l = 0; l < sizeof(mqtt[0]); l++) {
-    Serial.print(mqtt[k][l]);
-    Serial.print(" ");
-  }
-  Serial.println();
-  }
 }
 
 void mqttCallback(char* topic, byte* payload, unsigned int length){
@@ -155,7 +149,8 @@ void setup()
 {
   Serial.begin(115200);
   // 防彈跳按鈕的延遲
-  resetBtn.setDebounceTime(50);
+  resetBtn.setDebounceTime(btnDelay);
+  pinMode(resetBtnPin, INPUT_PULLUP);
   // max7219初始化
   myDisplay.begin();
   myDisplay.displayClear();
@@ -201,15 +196,12 @@ void loop()
   } else {
     digitalWrite(wifiNotice, LOW);
   }
-   Serial.println("WIFI");
-      Serial.println(WiFi.status());
+
   if (!myClient.connected()) {
     digitalWrite(mqttNotice, HIGH);
   } else {
     digitalWrite(mqttNotice, LOW);
   }
-   Serial.println("MQTT");
-Serial.println(myClient.connected());
 
   // 馬達驅動
   if(motorFunc){
