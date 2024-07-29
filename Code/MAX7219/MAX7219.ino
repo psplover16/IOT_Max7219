@@ -155,6 +155,8 @@ void setup()
   myDisplay.begin();
   myDisplay.displayClear();
   mx.begin();
+//  mx.control(MD_MAX72XX::INTENSITY, 0); 
+  mx.control(MD_MAX72XX::INTENSITY, 15); 
   // HC-HR501
   pinMode(infraredPin, INPUT);
   digitalWrite(infraredPin, LOW);
